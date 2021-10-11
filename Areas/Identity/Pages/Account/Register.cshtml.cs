@@ -57,8 +57,8 @@ namespace Projeto_RH.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirme a Senha")]
+            [Compare("Password", ErrorMessage = "A senha e a confirmacao da senha nao sao Identicas.")]
             public string ConfirmPassword { get; set; }
         }
 
