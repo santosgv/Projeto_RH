@@ -1,0 +1,105 @@
+﻿@model Projeto_RH.Entidades.Rh
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rh</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.N_Referencia_Pandape)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.N_Referencia_Pandape)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vaga)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vaga)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email_Solicitante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email_Solicitante)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnumFiliais)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EnumFiliais)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Solicitação_Infra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Solicitação_Infra)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Solicitação_Telefonia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Solicitação_Telefonia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tipo_Equipamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tipo_Equipamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cargo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cargo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Setor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Setor)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Filial_infra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Filial_infra)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movidesk_Infra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movidesk_Infra)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Movidesk_Telefonia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Movidesk_Telefonia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Andamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Andamento)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
