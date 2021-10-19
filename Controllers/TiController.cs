@@ -11,8 +11,8 @@ using Projeto_RH.Entidades;
 
 namespace Projeto_RH.Controllers
 {
-    [Authorize(Roles ="ti")]
-    public class TiController : Controller
+
+    public class TiController : BaseController
     {
         private readonly ApplicationDbContext _context;
 

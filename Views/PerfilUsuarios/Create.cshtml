@@ -1,21 +1,24 @@
-﻿@model Projeto_RH.Entidades.Permissoes
+﻿@model Projeto_RH.Models.PerfilUsuario
 
 @{
-    ViewData["Title"] = "Nova Permissao";
+    ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
 
-<h4>Permissoes</h4>
+<h4>PerfilUsuario</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Permissao" class="control-label"></label>
-                <input asp-for="Permissao" class="form-control" />
-                <span asp-validation-for="Permissao" class="text-danger"></span>
+                <label asp-for="IdTipoUsuario" class="control-label"></label>
+                <select asp-for="IdTipoUsuario" class ="form-control" asp-items="ViewBag.IdTipoUsuario"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

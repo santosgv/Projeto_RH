@@ -2,34 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Projeto_RH.Data;
-using Projeto_RH.Entidades;
+using Projeto_RH.Models;
 
 namespace Projeto_RH.Controllers
 {
-
-
- 
-    public class RhsController : BaseController
+    public class TipoUsuariosController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public RhsController(ApplicationDbContext context)
+        public TipoUsuariosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Rhs
+        // GET: TipoUsuarios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RH.ToListAsync());
+            return View(await _context.TipoUsuario.ToListAsync());
         }
 
-        // GET: Rhs/Details/5
+        // GET: TipoUsuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,39 +33,39 @@ namespace Projeto_RH.Controllers
                 return NotFound();
             }
 
-            var rh = await _context.RH
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (rh == null)
+            var tipoUsuario = await _context.TipoUsuario
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (tipoUsuario == null)
             {
                 return NotFound();
             }
 
-            return View(rh);
+            return View(tipoUsuario);
         }
 
-        // GET: Rhs/Create
+        // GET: TipoUsuarios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Rhs/Create
+        // POST: TipoUsuarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Create([Bind("Id,NomeTipoUsuario")] TipoUsuario tipoUsuario)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rh);
+                _context.Add(tipoUsuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(rh);
+            return View(tipoUsuario);
         }
 
-        // GET: Rhs/Edit/5
+        // GET: TipoUsuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,22 +73,22 @@ namespace Projeto_RH.Controllers
                 return NotFound();
             }
 
-            var rh = await _context.RH.FindAsync(id);
-            if (rh == null)
+            var tipoUsuario = await _context.TipoUsuario.FindAsync(id);
+            if (tipoUsuario == null)
             {
                 return NotFound();
             }
-            return View(rh);
+            return View(tipoUsuario);
         }
 
-        // POST: Rhs/Edit/5
+        // POST: TipoUsuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeTipoUsuario")] TipoUsuario tipoUsuario)
         {
-            if (id != rh.id)
+            if (id != tipoUsuario.Id)
             {
                 return NotFound();
             }
@@ -101,12 +97,12 @@ namespace Projeto_RH.Controllers
             {
                 try
                 {
-                    _context.Update(rh);
+                    _context.Update(tipoUsuario);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RhExists(rh.id))
+                    if (!TipoUsuarioExists(tipoUsuario.Id))
                     {
                         return NotFound();
                     }
@@ -117,10 +113,10 @@ namespace Projeto_RH.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(rh);
+            return View(tipoUsuario);
         }
 
-        // GET: Rhs/Delete/5
+        // GET: TipoUsuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,30 +124,30 @@ namespace Projeto_RH.Controllers
                 return NotFound();
             }
 
-            var rh = await _context.RH
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (rh == null)
+            var tipoUsuario = await _context.TipoUsuario
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (tipoUsuario == null)
             {
                 return NotFound();
             }
 
-            return View(rh);
+            return View(tipoUsuario);
         }
 
-        // POST: Rhs/Delete/5
+        // POST: TipoUsuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var rh = await _context.RH.FindAsync(id);
-            _context.RH.Remove(rh);
+            var tipoUsuario = await _context.TipoUsuario.FindAsync(id);
+            _context.TipoUsuario.Remove(tipoUsuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RhExists(int id)
+        private bool TipoUsuarioExists(int id)
         {
-            return _context.RH.Any(e => e.id == id);
+            return _context.TipoUsuario.Any(e => e.Id == id);
         }
     }
 }

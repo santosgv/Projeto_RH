@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Projeto_RH.Migrations
@@ -177,6 +178,71 @@ namespace Projeto_RH.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+            // comeca aqui
+            migrationBuilder.CreateTable(
+                   name: "TipoUsuario",
+                   columns: table => new
+                   {
+                       Id = table.Column<int>(nullable: false)
+                            .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                       NomeTipoUsuario = table.Column<string>(maxLength: 256, nullable: true),
+                   },
+                   constraints: table =>
+                   {
+                       table.PrimaryKey("PK_TipoUsuario", x => x.Id);
+                   });
+
+
+            migrationBuilder.CreateTable(
+             name: "AcessoTipoUsuario",
+             columns: table => new
+             {
+                 Id = table.Column<int>(nullable: false)
+                     .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                 NomeFuncionalidade = table.Column<string>(maxLength: 128, nullable: false),
+                 IdTipoUsuario = table.Column<int>(nullable: false),
+             },
+             constraints: table =>
+             {
+                 table.PrimaryKey("PK_AcessoTipoUsuario", x => new { x.Id });
+
+                 table.ForeignKey(
+                     name: "FK_AcessoTipoUsuario_TipoUsuario_IdTipoUsuario",
+                     column: x => x.IdTipoUsuario,
+                     principalTable: "TipoUsuario",
+                     principalColumn: "Id",
+                     onDelete: ReferentialAction.Cascade);
+             });
+
+
+            migrationBuilder.CreateTable(
+               name: "PerfilUsuario",
+               columns: table => new
+               {
+                   Id = table.Column<int>(nullable: false)
+                       .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                   UserId = table.Column<string>(maxLength: 450, nullable: false),
+                   IdTipoUsuario = table.Column<int>(nullable: false),
+               },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PerfilUsuario", x => new { x.Id });
+
+                    table.ForeignKey(
+                        name: "FK_PerfilUsuario_TipoUsuario_IdTipoUsuario",
+                        column: x => x.IdTipoUsuario,
+                        principalTable: "TipoUsuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+
+                    table.ForeignKey(
+                       name: "FK_PerfilUsuario_AspNetUsers_UserId",
+                       column: x => x.UserId,
+                       principalTable: "AspNetUsers",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.Cascade);
+                });
+
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -7,29 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Projeto_RH.Data;
-using Projeto_RH.Entidades;
+using Projeto_RH.Models;
 
 namespace Projeto_RH.Controllers
 {
-
-
- 
-    public class RhsController : BaseController
+  
+    public class AcessoTipoUsuariosController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public RhsController(ApplicationDbContext context)
+        public AcessoTipoUsuariosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Rhs
+        // GET: AcessoTipoUsuarios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RH.ToListAsync());
+            var applicationDbContext = _context.AcessoTipoUsuario.Include(a => a.TipoUsuario);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Rhs/Details/5
+        // GET: AcessoTipoUsuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,39 +36,42 @@ namespace Projeto_RH.Controllers
                 return NotFound();
             }
 
-            var rh = await _context.RH
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (rh == null)
+            var acessoTipoUsuario = await _context.AcessoTipoUsuario
+                .Include(a => a.TipoUsuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (acessoTipoUsuario == null)
             {
                 return NotFound();
             }
 
-            return View(rh);
+            return View(acessoTipoUsuario);
         }
 
-        // GET: Rhs/Create
+        // GET: AcessoTipoUsuarios/Create
         public IActionResult Create()
         {
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario");
             return View();
         }
 
-        // POST: Rhs/Create
+        // POST: AcessoTipoUsuarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Create([Bind("Id,NomeFuncionalidade,IdTipoUsuario")] AcessoTipoUsuario acessoTipoUsuario)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rh);
+                _context.Add(acessoTipoUsuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(rh);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario", acessoTipoUsuario.IdTipoUsuario);
+            return View(acessoTipoUsuario);
         }
 
-        // GET: Rhs/Edit/5
+        // GET: AcessoTipoUsuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,22 +79,23 @@ namespace Projeto_RH.Controllers
                 return NotFound();
             }
 
-            var rh = await _context.RH.FindAsync(id);
-            if (rh == null)
+            var acessoTipoUsuario = await _context.AcessoTipoUsuario.FindAsync(id);
+            if (acessoTipoUsuario == null)
             {
                 return NotFound();
             }
-            return View(rh);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario", acessoTipoUsuario.IdTipoUsuario);
+            return View(acessoTipoUsuario);
         }
 
-        // POST: Rhs/Edit/5
+        // POST: AcessoTipoUsuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeFuncionalidade,IdTipoUsuario")] AcessoTipoUsuario acessoTipoUsuario)
         {
-            if (id != rh.id)
+            if (id != acessoTipoUsuario.Id)
             {
                 return NotFound();
             }
@@ -101,12 +104,12 @@ namespace Projeto_RH.Controllers
             {
                 try
                 {
-                    _context.Update(rh);
+                    _context.Update(acessoTipoUsuario);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RhExists(rh.id))
+                    if (!AcessoTipoUsuarioExists(acessoTipoUsuario.Id))
                     {
                         return NotFound();
                     }
@@ -117,10 +120,11 @@ namespace Projeto_RH.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(rh);
+            ViewData["IdTipoUsuario"] = new SelectList(_context.TipoUsuario, "Id", "NomeTipoUsuario", acessoTipoUsuario.IdTipoUsuario);
+            return View(acessoTipoUsuario);
         }
 
-        // GET: Rhs/Delete/5
+        // GET: AcessoTipoUsuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,30 +132,31 @@ namespace Projeto_RH.Controllers
                 return NotFound();
             }
 
-            var rh = await _context.RH
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (rh == null)
+            var acessoTipoUsuario = await _context.AcessoTipoUsuario
+                .Include(a => a.TipoUsuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (acessoTipoUsuario == null)
             {
                 return NotFound();
             }
 
-            return View(rh);
+            return View(acessoTipoUsuario);
         }
 
-        // POST: Rhs/Delete/5
+        // POST: AcessoTipoUsuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var rh = await _context.RH.FindAsync(id);
-            _context.RH.Remove(rh);
+            var acessoTipoUsuario = await _context.AcessoTipoUsuario.FindAsync(id);
+            _context.AcessoTipoUsuario.Remove(acessoTipoUsuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RhExists(int id)
+        private bool AcessoTipoUsuarioExists(int id)
         {
-            return _context.RH.Any(e => e.id == id);
+            return _context.AcessoTipoUsuario.Any(e => e.Id == id);
         }
     }
 }
