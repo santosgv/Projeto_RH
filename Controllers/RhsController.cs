@@ -13,7 +13,7 @@ namespace Projeto_RH.Controllers
 {
 
 
- 
+
     public class RhsController : BaseController
     {
         private readonly ApplicationDbContext _context;
@@ -26,6 +26,12 @@ namespace Projeto_RH.Controllers
         // GET: Rhs
         public async Task<IActionResult> Index()
         {
+            var temacesso = await Usuario_Tem_Acesso(3, _context);
+
+            if (!temacesso)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(await _context.RH.ToListAsync());
         }
 

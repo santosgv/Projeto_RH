@@ -16,12 +16,20 @@ namespace Projeto_RH.Controllers
 
         public PerfilUsuariosController(ApplicationDbContext context)
         {
+
             _context = context;
         }
 
         // GET: PerfilUsuarios
         public async Task<IActionResult> Index()
         {
+            //var temacesso = await Usuario_Tem_Acesso(2, _context);
+
+            //if (!temacesso)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             var applicationDbContext = _context.PerfilUsuario.Include(p => p.IdentityUser).Include(p => p.TipoUsuario);
             return View(await applicationDbContext.ToListAsync());
         }

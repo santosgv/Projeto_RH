@@ -24,6 +24,13 @@ namespace Projeto_RH.Controllers
         // GET: Ti
         public async Task<IActionResult> Index()
         {
+            var temacesso = await Usuario_Tem_Acesso(3, _context);
+
+            if (!temacesso)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(await _context.RH.ToListAsync());
         }
 
