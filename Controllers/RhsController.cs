@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +10,6 @@ using Projeto_RH.Entidades;
 
 namespace Projeto_RH.Controllers
 {
-
-
-
     public class RhsController : BaseController
     {
         private readonly ApplicationDbContext _context;
@@ -25,13 +21,16 @@ namespace Projeto_RH.Controllers
 
         // GET: Rhs
         public async Task<IActionResult> Index()
+
         {
-            var temacesso = await Usuario_Tem_Acesso(3, _context);
+
+            var temacesso = await Usuario_Tem_Acesso(2, _context);
 
             if (!temacesso)
             {
                 return RedirectToAction("Index", "Home");
             }
+
             return View(await _context.RH.ToListAsync());
         }
 
@@ -64,7 +63,7 @@ namespace Projeto_RH.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Create([Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento,Recebido_por,DataRecebimento,Serie_equipamento")] Rh rh)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +95,7 @@ namespace Projeto_RH.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Edit(int id, [Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento,Recebido_por,DataRecebimento,Serie_equipamento")] Rh rh)
         {
             if (id != rh.id)
             {

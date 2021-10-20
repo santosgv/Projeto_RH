@@ -22,12 +22,7 @@ namespace Projeto_RH.Controllers
         // GET: TipoUsuarios
         public async Task<IActionResult> Index()
         {
-            //var temacesso = await Usuario_Tem_Acesso(1, _context);
 
-            //if (!temacesso)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
 
 
             return View(await _context.TipoUsuario.ToListAsync());

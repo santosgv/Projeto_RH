@@ -25,12 +25,7 @@ namespace Projeto_RH.Controllers
         public async Task<IActionResult> Index()
 
         {
-            //var temacesso = await Usuario_Tem_Acesso(3, _context);
-
-            //if (!temacesso)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+           
 
             var applicationDbContext = _context.AcessoTipoUsuario.Include(a => a.TipoUsuario);
             return View(await applicationDbContext.ToListAsync());

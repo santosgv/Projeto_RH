@@ -19,8 +19,6 @@ namespace Projeto_RH.Data
 
         public DbSet<Rh> RH { get; set; }
 
-        public DbSet<Projeto_RH.Entidades.Permissoes> Permissoes { get; set; }
-
         public DbSet<Projeto_RH.Models.TipoUsuario> TipoUsuario { get; set; }
 
         public DbSet<Projeto_RH.Models.AcessoTipoUsuario> AcessoTipoUsuario { get; set; }

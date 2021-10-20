@@ -1,11 +1,10 @@
-﻿@using Projeto_RH.Enums
-@model Projeto_RH.Entidades.Rh
+﻿@model Projeto_RH.Entidades.Rh
 
 @{
-    ViewData["Title"] = "Nova Requisiço";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Nova</h1>
+<h1>Create</h1>
 
 <h4>Rh</h4>
 <hr />
@@ -14,13 +13,18 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="DataCadastro" class="control-label"></label>
+                <input asp-for="DataCadastro" class="form-control" />
+                <span asp-validation-for="DataCadastro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="N_Referencia_Pandape" class="control-label"></label>
                 <input asp-for="N_Referencia_Pandape" class="form-control" />
                 <span asp-validation-for="N_Referencia_Pandape" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Vaga" class="control-label"></label>
-                <select asp-for="Vaga" asp-items="Html.GetEnumSelectList<Vaga>()" class="form-control"></select>
+                <select asp-for="Vaga" class="form-control"></select>
                 <span asp-validation-for="Vaga" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -30,22 +34,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="EnumFiliais" class="control-label"></label>
-                <select asp-for="EnumFiliais" asp-items="Html.GetEnumSelectList<Filial>()" class="form-control"></select>
+                <select asp-for="EnumFiliais" class="form-control"></select>
                 <span asp-validation-for="EnumFiliais" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Solicitação_Infra" class="control-label"></label>
-                <select asp-for="Solicitação_Infra" asp-items="Html.GetEnumSelectList<Status>()" class="form-control"></select>
+                <select asp-for="Solicitação_Infra" class="form-control"></select>
                 <span asp-validation-for="Solicitação_Infra" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Solicitação_Telefonia" class="control-label"></label>
-                <select asp-for="Solicitação_Telefonia" asp-items="Html.GetEnumSelectList<Status>()" class="form-control"></select>
+                <select asp-for="Solicitação_Telefonia" class="form-control"></select>
                 <span asp-validation-for="Solicitação_Telefonia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tipo_Equipamento" class="control-label"></label>
-                <select asp-for="Tipo_Equipamento" asp-items="Html.GetEnumSelectList<Equipamento>()" class="form-control"></select>
+                <select asp-for="Tipo_Equipamento" class="form-control"></select>
                 <span asp-validation-for="Tipo_Equipamento" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,33 +64,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="Filial_infra" class="control-label"></label>
-                <select asp-for="Filial_infra" asp-items="Html.GetEnumSelectList<Filial>()" class="form-control"></select>
+                <select asp-for="Filial_infra" class="form-control"></select>
                 <span asp-validation-for="Filial_infra" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Movidesk_Infra" class="control-label"></label>
-                <input asp-for="Movidesk_Infra" class="form-control" />
-                <span asp-validation-for="Movidesk_Infra" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Movidesk_Telefonia" class="control-label"></label>
-                <input asp-for="Movidesk_Telefonia" class="form-control" />
-                <span asp-validation-for="Movidesk_Telefonia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Andamento" class="control-label"></label>
-                <select asp-for="Andamento" asp-items="Html.GetEnumSelectList<Andamento>()" class="form-control"></select>
-                <span asp-validation-for="Andamento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Voltar</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

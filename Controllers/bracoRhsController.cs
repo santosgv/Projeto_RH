@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,30 +10,28 @@ using Projeto_RH.Entidades;
 
 namespace Projeto_RH.Controllers
 {
-
-    public class TiController : BaseController
+    public class bracoRhsController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public TiController(ApplicationDbContext context)
+        public bracoRhsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Ti
+        // GET: bracoRhs
         public async Task<IActionResult> Index()
         {
-            var temacesso = await Usuario_Tem_Acesso(1, _context);
+            var temacesso = await Usuario_Tem_Acesso(3, _context);
 
             if (!temacesso)
             {
                 return RedirectToAction("Index", "Home");
             }
-
             return View(await _context.RH.ToListAsync());
         }
 
-        // GET: Ti/Details/5
+        // GET: bracoRhs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,18 +49,18 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // GET: Ti/Create
+        // GET: bracoRhs/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Ti/Create
+        // POST: bracoRhs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Create([Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento,Recebido_por,DataRecebimento,Serie_equipamento")] Rh rh)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +71,7 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // GET: Ti/Edit/5
+        // GET: bracoRhs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,12 +87,12 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // POST: Ti/Edit/5
+        // POST: bracoRhs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento")] Rh rh)
+        public async Task<IActionResult> Edit(int id, [Bind("id,DataCadastro,N_Referencia_Pandape,Vaga,Email_Solicitante,EnumFiliais,Solicitação_Infra,Solicitação_Telefonia,Tipo_Equipamento,Cargo,Setor,Filial_infra,Movidesk_Infra,Movidesk_Telefonia,Andamento,Recebido_por,DataRecebimento,Serie_equipamento")] Rh rh)
         {
             if (id != rh.id)
             {
@@ -125,7 +122,7 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // GET: Ti/Delete/5
+        // GET: bracoRhs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,7 +140,7 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // POST: Ti/Delete/5
+        // POST: bracoRhs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -16,6 +16,7 @@ namespace Projeto_RH.Entidades
         public Rh()
         {
             DataCadastro = DateTime.Now;
+    
         }
 
         [Key]
@@ -92,6 +93,19 @@ namespace Projeto_RH.Entidades
         [Column("Andamento")]
 
         public Andamento Andamento { get; set; }
+
+
+        [Display(Name = "Recebido Por")]
+        [Column("Recebido_por")]
+        public string Recebido_por { get; set; }
+
+        [Display(Name = "Data Recebimento")]
+        [Column("DataRecebimento")]
+        public DateTime DataRecebimento { get; set; }
+
+        [Display(Name = "Serie equipamento")]
+        [Column("Serie_equipamento")]
+        public int Serie_equipamento { get; set; }
 
     }
 }

@@ -1,28 +1,14 @@
 ﻿@model IEnumerable<Projeto_RH.Entidades.Rh>
 
 @{
-    ViewData["Title"] = "Requisiçoes";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
-<div>
-    <ul class="navbar-nav flex-grow-1">
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Novo Usuario</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="AcessoTipoUsuarios" asp-action="Index">Tipos de Acessos</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="PerfilUsuarios" asp-action="Index">Usuarios Autorizados</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="TipoUsuarios" asp-action="Index">Permissoes</a>
-        </li>
-    </ul>
-</div>
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -60,13 +46,16 @@
                 @Html.DisplayNameFor(model => model.Filial_infra)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movidesk_Infra)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movidesk_Telefonia)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Andamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recebido_por)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataRecebimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Serie_equipamento)
             </th>
             <th></th>
         </tr>
@@ -108,18 +97,20 @@
                 @Html.DisplayFor(modelItem => item.Filial_infra)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Movidesk_Infra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movidesk_Telefonia)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Andamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recebido_por)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataRecebimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serie_equipamento)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
             </td>
         </tr>
 }
