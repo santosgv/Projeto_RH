@@ -105,7 +105,7 @@ namespace Projeto_RH.Entidades
 
         [Display(Name = "Serie equipamento")]
         [Column("Serie_equipamento")]
-        public int Serie_equipamento { get; set; }
+        public string Serie_equipamento { get; set; }
 
     }
 }

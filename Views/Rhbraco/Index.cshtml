@@ -6,9 +6,6 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -44,6 +41,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Filial_infra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movidesk_Infra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movidesk_Telefonia)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Andamento)
@@ -97,6 +100,12 @@
                 @Html.DisplayFor(modelItem => item.Filial_infra)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Movidesk_Infra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movidesk_Telefonia)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Andamento)
             </td>
             <td>
@@ -110,7 +119,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> 
             </td>
         </tr>
 }
