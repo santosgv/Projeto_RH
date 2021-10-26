@@ -27,7 +27,7 @@ namespace Projeto_RH.Controllers
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.idParam = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
-            ViewBag.DateParm = sortOrder == "Date" ? "Date_desc" : "Date";
+            ViewBag.DateParm = sortOrder == "DataCadastro" ? "Date_desc" : "Date";
 
                         var requisicao = from s in _context.RH
                          select s;
@@ -37,7 +37,7 @@ namespace Projeto_RH.Controllers
                 case "id_desc":
                     requisicao = requisicao.OrderByDescending(s => s.id);
                     break;
-                case "Data":
+                case "DataCadastro":
                     requisicao = requisicao.OrderBy(s => s.DataCadastro);
                     break;
                 case "Data_desc":
