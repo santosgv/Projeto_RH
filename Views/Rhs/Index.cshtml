@@ -13,11 +13,17 @@
     <thead>
         <tr>
             <th>
+                @Html.ActionLink("Id", "Index", new { sortOrder = ViewBag.idParam })
+            </th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.id)
-            </th>
+            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
+                @Html.ActionLink("Id", "Index", new { sortOrder = ViewBag.DateParm })
             </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.N_Referencia_Pandape)
             </th>
