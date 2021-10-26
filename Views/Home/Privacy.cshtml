@@ -1,6 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Gestao usuarios";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Novo Usuario</a>
+<a class="nav-link text-dark" asp-area="" asp-controller="AcessoTipoUsuarios" asp-action="Index">Tipos de Acessos</a>
+<a class="nav-link text-dark" asp-area="" asp-controller="PerfilUsuarios" asp-action="Index">Usuarios Autorizados</a>
+<a class="nav-link text-dark" asp-area="" asp-controller="TipoUsuarios" asp-action="Index">Permissoes</a>

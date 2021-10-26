@@ -10,16 +10,16 @@ using Projeto_RH.Entidades;
 
 namespace Projeto_RH.Controllers
 {
-    public class bracoRhsController : BaseController
+    public class RhbracoController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public bracoRhsController(ApplicationDbContext context)
+        public RhbracoController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: bracoRhs
+        // GET: Rhbraco
         public async Task<IActionResult> Index()
         {
             var temacesso = await Usuario_Tem_Acesso(3, _context);
@@ -31,7 +31,7 @@ namespace Projeto_RH.Controllers
             return View(await _context.RH.ToListAsync());
         }
 
-        // GET: bracoRhs/Details/5
+        // GET: Rhbraco/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,13 +49,13 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // GET: bracoRhs/Create
+        // GET: Rhbraco/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: bracoRhs/Create
+        // POST: Rhbraco/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -71,7 +71,7 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // GET: bracoRhs/Edit/5
+        // GET: Rhbraco/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,7 +87,7 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // POST: bracoRhs/Edit/5
+        // POST: Rhbraco/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -122,7 +122,7 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // GET: bracoRhs/Delete/5
+        // GET: Rhbraco/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,7 +140,7 @@ namespace Projeto_RH.Controllers
             return View(rh);
         }
 
-        // POST: bracoRhs/Delete/5
+        // POST: Rhbraco/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

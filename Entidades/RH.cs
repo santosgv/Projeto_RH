@@ -20,8 +20,8 @@ namespace Projeto_RH.Entidades
         }
 
         [Key]
-        [Display(Name = "Rhid")]
-        [Column("Rhid")]
+        [Display(Name = "N° requisicao")]
+        [Column("id")]
         public int id { get; set; }
 
         [Display(Name = "Aberto Em")]
@@ -100,12 +100,13 @@ namespace Projeto_RH.Entidades
         public string Recebido_por { get; set; }
 
         [Display(Name = "Data Recebimento")]
+        [DisplayFormat(DataFormatString="{0:dd/MM/yyyy}",ApplyFormatInEditMode =true)]
         [Column("DataRecebimento")]
         public DateTime DataRecebimento { get; set; }
 
         [Display(Name = "Serie equipamento")]
         [Column("Serie_equipamento")]
-        public int Serie_equipamento { get; set; }
+        public string Serie_equipamento { get; set; }
 
     }
 }
