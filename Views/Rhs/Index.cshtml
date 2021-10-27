@@ -6,24 +6,15 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table id="braco" class="table">
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("Id", "Index", new { sortOrder = ViewBag.idParam })
-            </th>
-            @*<th>
                 @Html.DisplayNameFor(model => model.id)
-            </th>*@
-            <th>
-                @Html.ActionLink("Data Cadastro", "Index", new { sortOrder = ViewBag.DateParm })
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.DataCadastro)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.N_Referencia_Pandape)
             </th>
@@ -55,6 +46,12 @@
                 @Html.DisplayNameFor(model => model.Filial_infra)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Movidesk_Infra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movidesk_Telefonia)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Andamento)
             </th>
             <th>
@@ -70,62 +67,81 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.N_Referencia_Pandape)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vaga)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email_Solicitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnumFiliais)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitação_Infra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitação_Telefonia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo_Equipamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cargo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Setor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filial_infra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Andamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Recebido_por)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataRecebimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Serie_equipamento)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Detalhes</a> 
-              
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCadastro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.N_Referencia_Pandape)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vaga)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email_Solicitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnumFiliais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitação_Infra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitação_Telefonia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo_Equipamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Setor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filial_infra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movidesk_Infra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movidesk_Telefonia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Andamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recebido_por)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataRecebimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Serie_equipamento)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Detalhes</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#braco').DataTable();
+            language: {
+                url: '/localisation/br.json'
+            }
+        });
+    </script>
+}

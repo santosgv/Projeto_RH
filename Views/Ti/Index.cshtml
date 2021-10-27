@@ -23,7 +23,7 @@
     </ul>
 </div>
 
-<table class="table">
+<table id="ti" class="table">
     <thead>
         <tr>
             <th>
@@ -75,59 +75,73 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.N_Referencia_Pandape)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vaga)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email_Solicitante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnumFiliais)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitação_Infra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitação_Telefonia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo_Equipamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cargo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Setor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filial_infra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movidesk_Infra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movidesk_Telefonia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Andamento)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCadastro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.N_Referencia_Pandape)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vaga)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email_Solicitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnumFiliais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitação_Infra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitação_Telefonia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo_Equipamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Setor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filial_infra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movidesk_Infra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movidesk_Telefonia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Andamento)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#ti').DataTable();
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            }
+        });
+    </script>
+}

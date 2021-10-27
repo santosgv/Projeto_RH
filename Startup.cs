@@ -44,6 +44,7 @@ namespace Projeto_RH
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+                
             }
             else
             {

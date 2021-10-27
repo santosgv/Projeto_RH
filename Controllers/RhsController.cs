@@ -14,39 +14,16 @@ namespace Projeto_RH.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-     
-
+   
         public RhsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Rhs
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index()
 
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.idParam = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
-            ViewBag.DateParm = sortOrder == "DataCadastro" ? "Date_desc" : "Date";
-
-                        var requisicao = from s in _context.RH
-                         select s;
-
-            switch (sortOrder)
-            {
-                case "id_desc":
-                    requisicao = requisicao.OrderByDescending(s => s.id);
-                    break;
-                case "DataCadastro":
-                    requisicao = requisicao.OrderBy(s => s.DataCadastro);
-                    break;
-                case "Data_desc":
-                    requisicao = requisicao.OrderByDescending(s => s.DataCadastro);
-                    break;
-                default:
-                    requisicao = requisicao.OrderBy(s => s.id);
-                    break;
-            }
 
             var temacesso = await Usuario_Tem_Acesso(2, _context);
 
