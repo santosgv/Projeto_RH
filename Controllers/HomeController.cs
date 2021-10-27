@@ -23,7 +23,7 @@ namespace Projeto_RH.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Administracao()
         {
             return View();
         }

@@ -57,8 +57,8 @@ namespace Projeto_RH.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirme a Senha")]
-            [Compare("Password", ErrorMessage = "A senha e a confirmacao da senha nao sao Identicas.")]
+            [Display(Name = "Confirm password")]
+            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -78,7 +78,6 @@ namespace Projeto_RH.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                  // _userManager.AddToRoleAsync(user, "rh").Wait();
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
