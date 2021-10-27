@@ -76,7 +76,7 @@ namespace Projeto_RH.Entidades
         public string Setor { get; set; }
 
         [Required(ErrorMessage = "Adicione uma Filial Ti")]
-        [Display(Name = "Filial")]
+        [Display(Name = "Filial TI")]
         [Column("Filial_infra")]
         public Filial Filial_infra { get; set; }
 
